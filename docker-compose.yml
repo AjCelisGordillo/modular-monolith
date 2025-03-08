@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  evently.api:
+    image: eventlyapi
+    container_name: Evently.Api
+    build:
+      context: .
+      dockerfile: Evently.Api/Dockerfile
+    ports:
+      - 5000:8080
+      - 5001:8081
+    # depends_on:
+    #   - evently.database
+
+  # evently.database:
+  #   image: postgres:latest
+  #   container_name: Evently.Database
+  #   environment:
+  #     - POSTGRES_DB=evently
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=postgres
+  #   volumes:
+  #     - ./.containers/db:/var/lib/postgresql/data
+  #     - ./pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
+  #     - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  #   ports:
+  #     - 5432:5432
+  #   command: ["postgres", "-c", "listen_addresses=*", "-c", "hba_file=/var/lib/postgresql/data/pg_hba.conf"]
+
+  evently.seq:
+    image: datalust/seq:latest
+    container_name: Evently.Seq
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - 5341:5341
+      - 8081:80
+      
+  evently.redis:
+    image: redis:latest
+    container_name: Evently.Redis
+    restart: always
+    ports:
+     - 6379:6379
+     
+
+
