@@ -1,5 +1,11 @@
 {
   "Users": {
-
+    "KeyCloak": {
+      "AdminUrl": "http://evently.identity:8080/admin/realms/evently/",
+      "TokenUrl": "http://evently.identity:8080/realms/evently/protocol/openid-connect/token",
+      "ConfidentialCliendId": "evently-confidential-client",
+      "ConfidentialClientSecret": "THmADE1hQtfZLotVwmuGU1kVQQbkCkhQ",
+      "PublicCliendId": "evently-public-client"
+    }
   }
 }
