@@ -7,9 +7,9 @@
     "KeyCloak": {
       "AdminUrl": "",
       "TokenUrl": "",
-      "ConfidentialCliendId": "",
+      "ConfidentialClientId": "",
       "ConfidentialClientSecret": "",
-      "PublicCliendId": ""
+      "PublicClientId": ""
     }
   }
 }

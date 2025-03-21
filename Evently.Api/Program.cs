@@ -25,17 +25,20 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 builder.Services.AddApplication([
-    Evently.Modules.Events.Application.AssemblyReference.Assembly,
     Evently.Modules.Users.Application.AssemblyReference.Assembly,
+    Evently.Modules.Events.Application.AssemblyReference.Assembly,
     Evently.Modules.Ticketing.Application.AssemblyReference.Assembly,
-    Evently.Modules.Attendance.Application.AssemblyReference.Assembly,
+    Evently.Modules.Attendance.Application.AssemblyReference.Assembly
     ]);
 
 string databaseConnectionString = builder.Configuration.GetConnectionString("Database")!;
 string redisConnectionString = builder.Configuration.GetConnectionString("Cache")!;
 
 builder.Services.AddInfrastructure(
-    [TicketingModule.ConfigureConsumers],
+    [
+        TicketingModule.ConfigureConsumers,
+        AttendanceModule.ConfigureConsumers
+    ],
     databaseConnectionString,
     redisConnectionString
     );

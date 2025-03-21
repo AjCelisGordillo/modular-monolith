@@ -28,17 +28,18 @@ internal sealed class KeyCloakAuthDelegatingHandler(IOptions<KeyCloakOptions> op
     {
         var authRequestParameters = new KeyValuePair<string, string>[]
         {
+            new("grant_type", "client_credentials"),
             new("client_id", _options.ConfidentialClientId),
             new("client_secret", _options.ConfidentialClientSecret),
-            new("scope", "openid"),
-            new("grant_type", "client_credentials")
+            new("scope", "openid")
         };
 
         using var authRequestContent = new FormUrlEncodedContent(authRequestParameters);
 
-        using var authRequest = new HttpRequestMessage(HttpMethod.Post, new Uri(_options.TokenUrl));
-
-        authRequest.Content = authRequestContent;
+        using var authRequest = new HttpRequestMessage(HttpMethod.Post, new Uri(_options.TokenUrl))
+        {
+            Content = authRequestContent
+        };
 
         using HttpResponseMessage authorizationResponse = await base.SendAsync(authRequest, cancellationToken);
 
