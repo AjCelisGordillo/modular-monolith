@@ -1,15 +1,19 @@
 {
-  "Users": {
-    "Outbox": {
-      "IntervalInSeconds": 60,
-      "BatchSize": 20
-    },
-    "KeyCloak": {
-      "AdminUrl": "http://host.docker.internal:18080/admin/realms/evently/",
-      "TokenUrl": "http://host.docker.internal:18080/realms/evently/protocol/openid-connect/token",
-      "ConfidentialClientId": "evently-confidential-client",
-      "ConfidentialClientSecret": "THmADE1hQtfZLotVwmuGU1kVQQbkCkhQ",
-      "PublicClientId": "evently-public-client"
+    "Users": {
+        "Outbox": {
+            "IntervalInSeconds": 15,
+            "BatchSize": 20
+        },
+        "Inbox": {
+            "IntervalInSeconds": 15,
+            "BatchSize": 20
+        },
+        "KeyCloak": {
+            "AdminUrl": "http://host.docker.internal:18080/admin/realms/evently/",
+            "TokenUrl": "http://host.docker.internal:18080/realms/evently/protocol/openid-connect/token",
+            "ConfidentialClientId": "evently-confidential-client",
+            "ConfidentialClientSecret": "THmADE1hQtfZLotVwmuGU1kVQQbkCkhQ",
+            "PublicClientId": "evently-public-client"
+        }
     }
-  }
 }

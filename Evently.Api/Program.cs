@@ -65,7 +65,6 @@ if (app.Environment.IsDevelopment())
     app.ApplyMigrations();
 }
 
-app.MapEndpoints();
 
 app.MapHealthChecks("health", new HealthCheckOptions
 {
@@ -79,5 +78,7 @@ app.UseExceptionHandler();
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+app.MapEndpoints();
 
 app.Run();

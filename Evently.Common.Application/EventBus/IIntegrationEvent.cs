@@ -4,5 +4,5 @@ public interface IIntegrationEvent
 {
     Guid Id { get; }
 
-    DateTime OcurredOnUtc { get; }
+    DateTime OccurredOnUtc { get; }
 }
