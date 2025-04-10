@@ -30,7 +30,7 @@ public static class InfrastructureConfiguration
         services.AddAuthenticationInternal();
 
         services.AddAuthorizationInternal();
-        
+
         services.TryAddSingleton<IDateTimeProvider, DateTimeProvider>();
 
         services.TryAddSingleton<IEventBus, EventBus.EventBus>();
@@ -44,7 +44,12 @@ public static class InfrastructureConfiguration
 
         SqlMapper.AddTypeHandler(new GenericArrayHandler<string>());
 
-        services.AddQuartz();
+        services.AddQuartz(configurator =>
+        {
+            var scheduler = Guid.NewGuid();
+            configurator.SchedulerId = $"default-id-{scheduler}";
+            configurator.SchedulerName = $"default-name-{scheduler}";
+        });
 
         services.AddQuartzHostedService(options => options.WaitForJobsToComplete = true);
 
@@ -53,7 +58,7 @@ public static class InfrastructureConfiguration
             IConnectionMultiplexer connectionMultiplexer = ConnectionMultiplexer.Connect(redisConnectionString);
             services.TryAddSingleton(connectionMultiplexer);
 
-            services.AddStackExchangeRedisCache(options => 
+            services.AddStackExchangeRedisCache(options =>
                 options.ConnectionMultiplexerFactory = () => Task.FromResult(connectionMultiplexer));
         }
         catch
