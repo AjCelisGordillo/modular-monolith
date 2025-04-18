@@ -6,12 +6,12 @@ public sealed class UserRegisteredIntegrationEvent : IntegrationEvent
 {
     public UserRegisteredIntegrationEvent(
         Guid id,
-        DateTime ocurredOnUtc,
+        DateTime occurredOnUtc,
         Guid userId,
         string email,
         string firstName,
         string lastName
-    ) : base(id, ocurredOnUtc)
+    ) : base(id, occurredOnUtc)
     {
         UserId = userId;
         Email = email;
